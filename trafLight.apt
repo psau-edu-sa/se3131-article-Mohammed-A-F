@@ -1,0 +1,70 @@
+.name "trafLight"
+.type PN
+
+.places
+G1R
+G1L
+R1L
+R1R
+G2R
+R2L
+R2R
+G2L
+safe1
+G3
+R3
+safe2
+G4
+safe3
+R4
+safe4
+G51L
+R51L
+1or3
+G53
+R53
+1or4
+2or3
+2or4
+G51R
+R51R
+G54
+R54
+
+.transitions
+rg1
+gr1
+rg2
+gr2
+rg3
+gr3
+gr4
+rg4
+rg51
+gr51
+gr53
+rg53
+gr52
+rg52
+rg54
+gr54
+
+.flows
+rg1: {1*R1L, 1*R1R, 1*safe4} -> {1*G1L, 1*G1R, 1*1or3, 1*1or4}
+gr1: {1*G1L, 1*G1R} -> {1*R1L, 1*R1R, 1*safe1}
+rg2: {1*safe1, 1*R2L, 1*R2R} -> {1*G2L, 1*G2R, 1*2or3, 1*2or4}
+gr2: {1*G2L, 1*G2R} -> {1*R2L, 1*R2R, 1*safe2}
+rg3: {1*safe2, 1*R3} -> {1*G3, 1*1or3, 1*2or3}
+gr3: {1*G3} -> {1*R3, 1*safe3}
+gr4: {1*G4} -> {1*R4, 1*safe4}
+rg4: {1*safe3, 1*R4} -> {1*G4, 1*1or4, 1*2or4}
+rg51: {1*1or3, 1*R51L} -> {1*G51L}
+gr51: {1*G51L} -> {1*R51L}
+gr53: {1*G53} -> {1*R53}
+rg53: {1*2or3, 1*R53} -> {1*G53}
+gr52: {1*G51R} -> {1*R51R}
+rg52: {1*1or4, 1*R51R} -> {1*G51R}
+rg54: {1*2or4, 1*R54} -> {1*G54}
+gr54: {1*G54} -> {1*R54}
+
+.initial_marking {1*R1L, 1*R1R, 1*R2L, 1*R2R, 1*R3, 1*R4, 1*safe4, 1*R51L, 1*R53, 1*R51R, 1*R54}
